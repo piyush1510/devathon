@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sign In</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Welcome</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <!-- <li ><a href="Final_bootstrap.html">Landing Page</a></li> -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="jumbotron">
+        <h1>create Notice</h1>
+        <h4>Enter your correct details to register</h4>
+      </div>
+      <form method="POST" action="/admin/create/notice">
+        <div class="form-group">
+          <label for="title">title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputLastName"
+            placeholder="title"
+            name="title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="content">Content</label>
+          <textarea
+            class="form-control"
+            id="content"
+            name="content"
+            rows="3"
+            placeholder="content"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="course">target</label>
+          <select id="course" multiple name="course" class="form-control">
+            <option value='{"course":"btech","brach":"CSE","year":"1"}'>btech cse year 1</option>
+            <option value='{"course":"btech","brach":"CSE","year":"2"}'>btech cse year 2</option>
+            <option value='{"course":"btech","brach":"CSE","year":"3"}'>btech cse year 3</option>
+            <option value='{"course":"btech","brach":"CSE","year":"4"}'>btech cse year 4</option>
+            <option value='{"course":"btech","brach":"ECE","year":"1"}'>btech ece year 1</option>
+            <option value='{"course":"btech","brach":"ECE","year":"2"}'>btech ece year 2</option>
+            <option value='{"course":"btech","brach":"ECE","year":"3"}'>btech ece year 3</option>
+            <option value='{"course":"btech","brach":"ECE","year":"4"}'>btech ece year 4</option>
+            <option value='{"course":"btech","brach":"EEE","year":"1"}'>btech eee year 1</option>
+            <option value='{"course":"btech","brach":"EEE","year":"2"}'>btech eee year 2</option>
+            <option value='{"course":"btech","brach":"EEE","year":"3"}'>btech eee year 3</option>
+            <option value='{"course":"btech","brach":"EEE","year":"4"}'>btech eee year 4</option>
+        </select>
+        </div>
+        <div class="form-group">
+          <label for="rolls">title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputLastName"
+            placeholder="type rolls with a space in between"
+            name="rolls"
+          />
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="all"/>all
+          </label>
+        </div>
+        <button type="register" class="btn btn-default">create new Notice</button>
+      </form>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script>
+      </script>
+    </div>
+  </body>
+</html>
