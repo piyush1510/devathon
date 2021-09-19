@@ -1,4 +1,5 @@
 const Admin = require("../models/Admin");
+const Notice = require('../models/Notice')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -29,7 +30,7 @@ exports.postLogin = async (req, res) => {
         { name: admin.name, email: admin.email, id: admin.id },
         process.env.SECRET_KEY
       );
-      res.cookie("token_admin", token).redirect("/admin/create");
+      res.cookie("token_admin", token).redirect("/admin/create/notice");
     } else throw new Error("wrong password");
   } catch (err) {
     res.send(err.message);
@@ -41,20 +42,31 @@ exports.getRegister = (req, res) => {
 exports.getCreateNotice = (req, res) => {
   res.render('create-admin-notice')
 };
-exports.postCreateNotice = (req, res) => {
-  var {all,course,title,content,rolls} = req.body;
+exports.postCreateNotice = async (req, res) => {
+  var {course,title,content,rolls,course ,branch,year} = req.body;
+  var targets = [];
   try {
-    if(all){
-      
+    if(typeof course === 'string'){
+      targets=[{course,branch,year}]
     }
     else{
       for (let i = 0; i < course.length; i++) {
-        course[i]=JSON.parse(course[i])
+        targets.push({course:course[i],branch:branch[i],year:year[i]})
         
       }
       rolls = rolls.split(' ')
-      console.log(course,rolls);
+
     }
+    var notice = new Notice({
+      title,
+      content,
+      createdBy:req.admin.id,
+      targets,
+      rolls
+    })
+    await notice.save();
+    res.redirect(`/admin/notice/${notice._id}`)
+    
   } catch (err) {
     console.log(err.message);
   }
@@ -80,6 +92,22 @@ exports.postRegister = async (req, res) => {
     res.send(err);
   }
 };
-exports.getNotice = (req, res) => {
-  res.send(req.params.id);
+exports.getNotice = async (req, res) => {
+  try {
+    const notice =await Notice.findOne({});
+    console.log(notice);
+    res.send(notice)
+
+  } catch (err) {
+    console.log(err.message);
+    res.send(err.message)
+  }
+  
 };
+exports.logout = (req,res)=>{
+  try {
+    res.clearCookie("token_admin").redirect('/admin/login')
+  } catch (err) {
+    res.redirect('/admin/login')
+  }
+}

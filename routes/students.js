@@ -8,5 +8,6 @@ router
   .post("/register", studentController.postRegister)
   .get("/register", studentController.getRegister)
   .get("/notice/:id",studentController.auth,studentController.getNotice)
+  .get("/logout",studentController.logout)
 
 module.exports = router;

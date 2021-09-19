@@ -22,7 +22,7 @@ const studentSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    dept:{
+    branch:{
         type:String,
         required:true
     },

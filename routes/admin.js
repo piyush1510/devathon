@@ -8,6 +8,7 @@ router
   .post("/login", adminController.postLogin)
   .post("/register", adminController.postRegister)
   .get("/register", adminController.getRegister)
-  // .get("/notice/:id",adminController.auth,adminController.getNotice)
+  .get("/notice/:id",adminController.auth,adminController.getNotice)
+  .get('/logout',adminController.logout)
 
 module.exports = router;

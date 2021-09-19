@@ -20,10 +20,6 @@ const noticeSchema = mongoose.Schema({
     rolls:{
         type:[String], 
         required:true   
-    },
-    all:{
-        type:Boolean,
-        required:true
     }
 })
-module.exports = mongoose.model('Notice',quizSchema)
+module.exports = mongoose.model('Notice',noticeSchema)

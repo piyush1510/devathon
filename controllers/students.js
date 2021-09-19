@@ -1,9 +1,9 @@
 const Student = require("../models/Student");
+const Notice = require("../models/Notice")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 exports.auth = (req, res, next) => {
-    console.log(req.cookies);
   const token = req.cookies.token
   if (token == null) return res.sendStatus(401);
   jwt.verify(token, process.env.SECRET_KEY, (err, student) => {
@@ -26,6 +26,7 @@ exports.postLogin = async (req, res) => {
   console.log(req.body);
   try {
     const student = await Student.findOne({ roll });
+    console.log(student);
     // wrong roll number
     if (student == null) throw new Error("wrong email id");
     console.log(student);
@@ -39,14 +40,75 @@ exports.postLogin = async (req, res) => {
       res.cookie('token',token).redirect("/student/home");
     } else throw new Error("wrong password");
   } catch (err) {
+    console.log(err.message);
     res.send(err.message);
   }
 };
 exports.getRegister = (req, res) => {
   res.render("register-student");
 };
-exports.getDashboard = (req, res) => {
-  res.send(req.student);
+exports.getDashboard = async (req, res) => {
+  const notices = await Notice.find({
+    $or:[
+      {
+        targets:{
+          course:'0',
+          branch:'0',
+          year:'0',
+        }
+      },
+      {
+        targets:{
+          course:'0',
+          branch:'0',
+          year:req.student.year,
+        }
+      },
+      {
+        targets:{
+          course:'0',
+          branch:req.student.branch,
+          year:'0',
+        }
+      },
+      {
+        targets:{
+          course:'0',
+          branch:req.student.branch,
+          year:req.student.year,
+        }
+      },
+      {
+        targets:{
+          course:req.student.course,
+          branch:'0',
+          year:'0',
+        }
+      },
+      {
+        targets:{
+          course:req.student.course,
+          branch:'0',
+          year:req.student.year,
+        }
+      },
+      {
+        targets:{
+          course:req.student.course,
+          branch:req.student.branch,
+          year:'0',
+        }
+      },
+      {
+        targets:{
+          course:req.student.course,
+          branch:req.student.branch,
+          year:req.student.year,
+        }
+      },
+    ]
+  })
+  res.render('student-home',{notices,student:req.student})
 };
 exports.postRegister = async (req, res) => {
   const { email, name, roll, course, branch, pass, cpass, year } = req.body;
@@ -58,7 +120,7 @@ exports.postRegister = async (req, res) => {
       name,
       roll,
       course,
-      dept: branch,
+      branch,
       password: hash,
       year
     });
@@ -71,3 +133,10 @@ exports.postRegister = async (req, res) => {
 exports.getNotice = (req, res) => {
   res.send(req.params.id);
 };
+exports.logout = (req,res)=>{
+  try {
+    res.clearCookie("token").redirect('/student/login')
+  } catch (err) {
+    res.redirect('/student/login')
+  }
+}

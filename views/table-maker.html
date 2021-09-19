@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body class="container">
+    <div class="form-group">
+        <label for="">number of classes</label>
+        <input type="number" min="1" max="10" id="rows">
+        <button class="btn btn-danger" onclick="clickHandler()">create</button>
+    </div>
+    
+    <form action="/admin/create/table" method="POST">
+    <table class="table">
+        <thead>
+            <th>from to</th>
+            <th>subject</th>
+            <th>description</th>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+
+</form>
+<script>
+    const rows = document.querySelector('#rows')
+    console.log(rows);
+    function clickHandler(){
+        const tbody = document.querySelector('#tbody');
+        tbody.innerHTML="";
+        let n = parseInt(rows.value)
+        console.log(n);
+        for(let i =0;i<n;i++){
+            tbody.innerHTML+=`
+            <tr>
+            <td><input type="text" name="fromto"></td>
+            <td><input type="text" name="subject"></td>
+            <td><input type="text" name="description"></td>
+            </tr>
+            `
+        }
+    }
+</script>
+</body>
+</html>

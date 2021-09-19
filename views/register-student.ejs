@@ -3,45 +3,45 @@
   <head>
     <meta charset="utf-8" />
     <title>Sign In</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+      .jumbotron{
+        background-image: linear-gradient(67.5deg, rgb(6, 6, 6) 0%, rgb(6, 6, 6) 6%,rgb(29, 29, 29) 6%, rgb(29, 29, 29) 57%,rgb(52, 52, 52) 57%, rgb(52, 52, 52) 58%,rgb(75, 75, 75) 58%, rgb(75, 75, 75) 79%,rgb(97, 97, 97) 79%, rgb(97, 97, 97) 93%,rgb(120, 120, 120) 93%, rgb(120, 120, 120) 95%,rgb(143, 143, 143) 95%, rgb(143, 143, 143) 100%),linear-gradient(90deg, rgb(6, 6, 6) 0%, rgb(6, 6, 6) 6%,rgb(29, 29, 29) 6%, rgb(29, 29, 29) 57%,rgb(52, 52, 52) 57%, rgb(52, 52, 52) 58%,rgb(75, 75, 75) 58%, rgb(75, 75, 75) 79%,rgb(97, 97, 97) 79%, rgb(97, 97, 97) 93%,rgb(120, 120, 120) 93%, rgb(120, 120, 120) 95%,rgb(143, 143, 143) 95%, rgb(143, 143, 143) 100%),linear-gradient(135deg, rgb(6, 6, 6) 0%, rgb(6, 6, 6) 6%,rgb(29, 29, 29) 6%, rgb(29, 29, 29) 57%,rgb(52, 52, 52) 57%, rgb(52, 52, 52) 58%,rgb(75, 75, 75) 58%, rgb(75, 75, 75) 79%,rgb(97, 97, 97) 79%, rgb(97, 97, 97) 93%,rgb(120, 120, 120) 93%, rgb(120, 120, 120) 95%,rgb(143, 143, 143) 95%, rgb(143, 143, 143) 100%),linear-gradient(0deg, rgb(6, 6, 6) 0%, rgb(6, 6, 6) 6%,rgb(29, 29, 29) 6%, rgb(29, 29, 29) 57%,rgb(52, 52, 52) 57%, rgb(52, 52, 52) 58%,rgb(75, 75, 75) 58%, rgb(75, 75, 75) 79%,rgb(97, 97, 97) 79%, rgb(97, 97, 97) 93%,rgb(120, 120, 120) 93%, rgb(120, 120, 120) 95%,rgb(143, 143, 143) 95%, rgb(143, 143, 143) 100%),linear-gradient(90deg, rgb(8, 8, 8),rgb(221, 221, 221)); background-blend-mode:overlay,overlay,overlay,overlay,normal;
+      }
+    </style>
   </head>
   <body>
-    <nav class="navbar navbar-default navbar-inverse">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button
-            type="button"
-            class="navbar-toggle collapsed"
-            data-toggle="collapse"
-            data-target="#bs-example-navbar-collapse-1"
-            aria-expanded="false"
-          >
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Welcome</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <!-- <li ><a href="Final_bootstrap.html">Landing Page</a></li> -->
-          </ul>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Name</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/student/home">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/login">admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/student/register">register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/student/login">login</a>
+          </li>
+        </ul>
       </div>
     </nav>
 
-    <div class="container">
-      <div class="jumbotron">
+    <div class="jumbotron">
+      <div class="container text-light">
         <h1>Register</h1>
         <h4>Enter your correct details to register</h4>
       </div>
+      </div>
+      <div class="container">
       <form method="POST" action="/student/register">
         <div class="form-group">
           <label for="exampleInputLastName">Name</label>
@@ -66,21 +66,21 @@
         <div class="form-group" id="drop-downs">
           <label for="course">Course of Study:</label>
           <select name="course" id="course" placeholder="Select">
-            <option value="Btech">BTech</option>
-            <option value="Mtech">MTech</option>
-            <option value="MSc">MSc</option>
-            <option value="MBA">MBA</option>
-            <option value="PhD">PhD</option>
+            <option value="1">BTech</option>
+            <option value="2">MTech</option>
+            <option value="3">MSc</option>
+            <option value="4">MBA</option>
+            <option value="5">PhD</option>
           </select>
          <label for="branch">Branch:</label>
            <select name="branch" id="branch" placeholder="Select">
-            <option value="CSE">
+            <option value="1">
               CSE
             </option>
-            <option value="ECE">
+            <option value="2">
               ECE
             </option>
-            <option value="EEE">
+            <option value="3">
               EEE
             </option>
             <option value="Others">Others</option>
@@ -146,13 +146,13 @@
         if(course.value=="Btech"){
           branch.innerHTML=`
           <select name="branch" id="branch" placeholder="Select">
-            <option value="CSE">
+            <option value="1">
               CSE
             </option>
-            <option value="ECE">
+            <option value="2">
               ECE
             </option>
-            <option value="EEE">
+            <option value="3">
               EEE
             </option>
             <option value="Others">Others</option>
@@ -171,14 +171,14 @@
           branch.innerHTML=`
           <label for="branch">Branch:</label>
            <select name="branch" id="branch" placeholder="Select">
-            <option value="option-A">
-              option-A
+            <option value="1">
+              CSE
             </option>
-            <option value="option-B">
-              option-B
+            <option value="2">
+              ECE
             </option>
-            <option value="option-C">
-              option-C
+            <option value="3">
+              EEE
             </option>
             <option value="Others">Others</option>
           </select>
