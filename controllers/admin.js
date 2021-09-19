@@ -68,7 +68,7 @@ exports.postCreateNotice = async (req, res) => {
     res.redirect(`/admin/notice/${notice._id}`)
     
   } catch (err) {
-    console.log(err.message);
+    res.render('login-admin',{notLogged:true})
   }
 };
 exports.postRegister = async (req, res) => {

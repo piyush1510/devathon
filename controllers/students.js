@@ -5,9 +5,9 @@ const jwt = require("jsonwebtoken");
 
 exports.auth = (req, res, next) => {
   const token = req.cookies.token
-  if (token == null) return res.sendStatus(401);
+  if (token == null) return res.render("login-student",{notLogged:true});
   jwt.verify(token, process.env.SECRET_KEY, (err, student) => {
-    if (err) return res.sendStatus(404);
+    if (err) return res.render("login-student",{notLogged:true});
     req.student = student;
     next();
   });
@@ -26,10 +26,8 @@ exports.postLogin = async (req, res) => {
   console.log(req.body);
   try {
     const student = await Student.findOne({ roll });
-    console.log(student);
     // wrong roll number
-    if (student == null) throw new Error("wrong email id");
-    console.log(student);
+    if (student == null) return res.render("login-student",{checkpass:true});
     const match = await bcrypt.compare(pass, student.password);
     console.log(match);
     if (match) {
@@ -40,8 +38,7 @@ exports.postLogin = async (req, res) => {
       res.cookie('token',token).redirect("/student/home");
     } else throw new Error("wrong password");
   } catch (err) {
-    console.log(err.message);
-    res.send(err.message);
+    return res.render("login-student",{checkpass:true});
   }
 };
 exports.getRegister = (req, res) => {
@@ -114,6 +111,7 @@ exports.postRegister = async (req, res) => {
   const { email, name, roll, course, branch, pass, cpass, year } = req.body;
   console.log(req.body);
   try {
+    if(cpass!=pass) throw new Error('password not match')
     const hash = await bcrypt.hash(pass, 10);
     const student = new Student({
       email,
@@ -127,7 +125,7 @@ exports.postRegister = async (req, res) => {
     await student.save();
     res.render("login-student", { success: true });
   } catch (err) {
-    res.send(err);
+    return res.render("register-student",{checkpass:true});
   }
 };
 exports.getNotice = (req, res) => {
